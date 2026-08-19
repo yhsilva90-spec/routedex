@@ -1,0 +1,31 @@
+{
+  "name": "routedex-bdsp",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "agent": "node scripts/routedex-agent.mjs",
+    "agent:dev": "node scripts/routedex-agent.mjs dev",
+    "agent:check": "node scripts/routedex-agent.mjs check",
+    "agent:audit": "node scripts/routedex-agent.mjs audit",
+    "agent:prepare-update": "node scripts/routedex-agent.mjs prepare-update"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest",
+    "typescript": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "lucide-react": "latest"
+  },
+  "devDependencies": {
+    "vitest": "latest",
+    "jsdom": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest"
+  }
+}
