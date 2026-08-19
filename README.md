@@ -1,41 +1,59 @@
 # RouteDex BD/SP
 
-Checklist web local para acompanhar capturas por rota, área, horário e versão de Pokémon Brilliant Diamond / Shining Pearl.
+O RouteDex é uma caderneta web para acompanhar a Pokédex de Pokémon Brilliant Diamond e Shining Pearl por rota, área, método de encontro, horário, versão, ginásios e Elite Four.
 
-## Executar
+## Acesso
+
+Use a versão publicada no GitHub Pages:
+
+<https://yhsilva90-spec.github.io/routedex/>
+
+A experiência oficial do projeto é web. O repositório funciona como fonte de publicação e manutenção do site, não como um aplicativo distribuído para instalação local.
+
+## Recursos
+
+- acompanhamento por localização, com progresso compartilhado entre ocorrências do mesmo Pokémon;
+- separação entre grama, Surf, pesca, Poké Radar e Swarm;
+- horários, níveis, métodos, versões e chances de encontro quando disponíveis;
+- Sinnoh Dex e National Dex;
+- checklist de líderes de ginásio e Elite Four;
+- checklist de pós-jogo e Technical Machines;
+- sprites, backup JSON e persistência automática no navegador.
+
+## Persistência
+
+O progresso é salvo automaticamente no armazenamento do navegador usando a chave versionada `routedex-progress-v2`. A aplicação também migra a chave anterior `routedex-progress-v1`.
+
+O armazenamento é específico da origem. Se você trocar de navegador, usar uma janela anônima ou sair de `localhost` para a URL publicada, use `Exportar` na origem antiga e `Importar` na nova. O backup JSON é a proteção contra limpeza dos dados do navegador.
+
+## Dados e fontes
+
+A base atual é uma camada inicial normalizada a partir da planilha de trabalho e de dados estruturados de encontros. Ela ainda não deve ser tratada como uma fonte definitiva: existem divergências que serão revisadas antes de uma nova versão da base.
+
+Um exemplo conhecido é a ausência de Bibarel na Route 210 na base atual, embora a Wiki registre esse encontro. Esse tipo de diferença será auditado por localização, versão, método, horário e chance antes de ser incorporado.
+
+O próximo passo de dados é criar uma base própria, com:
+
+1. identificadores estáveis para localidades, Pokémon e encontros;
+2. fonte e data de validação em cada registro;
+3. separação entre dado confirmado, divergência e revisão pendente;
+4. importação reproduzível sem sobrescrever alterações manuais;
+5. testes para detectar localidades ou encontros ausentes.
+
+## Publicação
+
+O deploy é feito automaticamente pelo workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) quando há um push na `main`.
+
+Para administrar o site no GitHub, deixe `Settings > Pages > Build and deployment > Source` configurado como `GitHub Actions`.
+
+## Manutenção
+
+Os comandos de manutenção ficam disponíveis para quem contribui com o projeto:
 
 ```bash
-pnpm install
-pnpm dev
+pnpm agent:check
+pnpm agent:audit
+pnpm agent:prepare-update
 ```
 
-Abra o endereço local mostrado pelo Vite.
-
-## Atualizar dados da planilha
-
-```bash
-python scripts/import_workbook.py "C:\\caminho\\Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-```
-
-O script gera `src/data/gameData.ts`, normaliza localidades e tenta enriquecer os horários com as condições de encontro da PokéAPI. Registros sem horário confirmado permanecem marcados como desconhecidos.
-
-## Verificação
-
-```bash
-pnpm test
-pnpm build
-```
-
-## Publicar no GitHub Pages
-
-1. Crie um repositório no GitHub e envie este projeto para a branch `main`.
-2. Em `Settings > Pages`, selecione `GitHub Actions` como origem da publicação.
-3. O workflow `.github/workflows/deploy.yml` instalará as dependências, executará `pnpm agent:check` e publicará o site.
-
-O endereço público ficará parecido com `https://seu-usuario.github.io/nome-do-repositorio/`.
-
-## Persistência do progresso
-
-O progresso é salvo automaticamente no armazenamento persistente do navegador, usando a chave `routedex-progress-v2`. A aplicação também migra a chave anterior `routedex-progress-v1`.
-
-`localhost` e a URL do GitHub Pages são origens diferentes. Portanto, para levar o progresso local para a publicação, use `Exportar` no localhost e `Importar` na página publicada. O backup JSON continua sendo a proteção principal contra limpeza de dados, troca de navegador ou uso de janela anônima.
+Antes de qualquer atualização de dados, a alteração deve passar por auditoria, testes, build e revisão visual.
