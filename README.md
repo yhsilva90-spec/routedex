@@ -28,17 +28,18 @@ O armazenamento é específico da origem. Se você trocar de navegador, usar uma
 
 ## Dados e fontes
 
-A base atual é uma camada inicial normalizada a partir da planilha de trabalho e de dados estruturados de encontros. Ela ainda não deve ser tratada como uma fonte definitiva: existem divergências que serão revisadas antes de uma nova versão da base.
+A base de localidades combina a planilha de trabalho com as tabelas de encontros da geração 8 do [Pokémon Database](https://pokemondb.net/brilliant-diamond-shining-pearl). A tabela externa é usada para reconciliar encontros selvagens por local, método, versão, horário, nível e chance; registros especiais que não pertencem a uma tabela selvagem comum continuam preservados para revisão manual.
 
-Um exemplo conhecido é a ausência de Bibarel na Route 210 na base atual, embora a Wiki registre esse encontro. Esse tipo de diferença será auditado por localização, versão, método, horário e chance antes de ser incorporado.
+Essa reconciliação corrigiu, entre outros casos, a ausência de Bibarel na Route 210. A fonte confirma o encontro na seção norte da rota, na grama, em BD e SP, no nível 24 e com 20% de chance. A interface continua agrupando norte e sul sob o nome da rota para manter o acompanhamento por localização.
 
-O próximo passo de dados é criar uma base própria, com:
+O próximo passo de dados é transformar essa base reconciliada em uma fonte própria versionada, com:
 
 1. identificadores estáveis para localidades, Pokémon e encontros;
 2. fonte e data de validação em cada registro;
 3. separação entre dado confirmado, divergência e revisão pendente;
 4. importação reproduzível sem sobrescrever alterações manuais;
-5. testes para detectar localidades ou encontros ausentes.
+5. testes para detectar localidades ou encontros ausentes;
+6. revisão cruzada com Bulbapedia e Thonky para exceções, encontros estáticos e eventos.
 
 ## Publicação
 
@@ -55,5 +56,18 @@ pnpm agent:check
 pnpm agent:audit
 pnpm agent:prepare-update
 ```
+
+O ciclo de QA também pode ser executado localmente:
+
+```bash
+pnpm agent:qa:data
+pnpm agent:qa:source
+pnpm agent:reconcile:source
+pnpm agent:qa:interaction
+pnpm agent:qa:visual
+pnpm agent:qa
+```
+
+Ele gera relatórios e screenshots em `artifacts/qa/`, valida os três tamanhos de tela principais e não altera o código automaticamente. O comando `agent:reconcile:source` é a exceção explícita: aplica na base apenas as correções de versão/horário confirmadas pelas fontes cacheadas. Consulte [`docs/routedex-qa-agents.md`](docs/routedex-qa-agents.md) para o escopo completo.
 
 Antes de qualquer atualização de dados, a alteração deve passar por auditoria, testes, build e revisão visual.

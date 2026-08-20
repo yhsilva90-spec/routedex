@@ -14,6 +14,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from lxml import html as lxml_html
 
+from encounter_reconciliation import upsert_canonical_encounter
+
 import openpyxl
 
 SOURCE = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(r"C:\Users\Usuario\Downloads\Cópia de BDSP Pokedex Worklist Sharable.xlsx")
@@ -317,33 +319,39 @@ def main():
 
     enriched = enrich_times([item["id"] for item in pokemon])
     pokemondb = enrich_from_pokemondb(location_map)
+    pokemon_by_canonical_name = {canonical_name(item["name"]): item["id"] for item in pokemon}
+    canonical_additions = []
     for location in location_map.values():
+        # The workbook is an editorial starting point, not a complete source
+        # of wild encounters. Reconcile every Pokémon Database Generation 8
+        # table into the location before enriching the existing records. This
+        # is what catches omissions such as Bibarel on Route 210.
+        for pokemon_name, database_details in pokemondb.get(location["id"], {}).items():
+            pokemon_id = pokemon_by_canonical_name.get(pokemon_name)
+            if pokemon_id is None or not database_details:
+                continue
+            _, added = upsert_canonical_encounter(
+                location["encounters"],
+                location_id=location["id"],
+                pokemon_id=pokemon_id,
+                canonical_details=database_details,
+            )
+            if added:
+                canonical_additions.append({"location": location["name"], "pokemonId": pokemon_id})
+
         for encounter in location["encounters"]:
-            pokemon_name = next((item["name"] for item in pokemon if item["id"] == encounter["pokemonId"]), "")
-            original_method = encounter.get("method")
-            database_details = pokemondb.get(location["id"], {}).get(canonical_name(pokemon_name), [])
-            if database_details:
-                if original_method == "Swarm":
-                    # Pokémon Database exposes the regular grass table, but a
-                    # Swarm is a separate post-game encounter condition. Keep
-                    # the workbook's method and avoid relabeling it as Walking.
-                    encounter["details"] = [{"method": "Swarm", "times": encounter["times"], "versions": encounter["versions"], "condition": encounter["condition"], "source": encounter["source"]}]
-                else:
-                    encounter["details"] = database_details
-                    encounter["times"] = sorted({time for detail in database_details for time in detail["times"]})
-                    encounter["versions"] = sorted({version for detail in database_details for version in detail["versions"]})
-                    encounter["method"] = " · ".join(sorted({detail["method"] for detail in database_details}))
-                    encounter["source"] = database_details[0]["source"]
             matches = [entry for entry in enriched.get(encounter["pokemonId"], []) if entry["location"].lower() == location["name"].lower()]
+            has_canonical_source = any(str(detail.get("source", "")).startswith("https://pokemondb.net/location/") for detail in encounter.get("details", []))
             times = sorted({time for match in matches for time in match["times"]})
-            if times and encounter["times"] == ["unknown"]:
-                encounter["times"] = times
-            elif times:
-                encounter["times"] = sorted(set(encounter["times"]) | set(times))
             matched_versions = sorted({"BD" if match.get("version") == "diamond" else "SP" for match in matches if match.get("version") in {"diamond", "pearl"}})
-            if matched_versions:
+            if not has_canonical_source and times and encounter["times"] == ["unknown"]:
+                encounter["times"] = times
+            elif not has_canonical_source and times:
+                encounter["times"] = sorted(set(encounter["times"]) | set(times))
+            if not has_canonical_source and matched_versions:
                 encounter["versions"] = matched_versions
-            encounter["source"] = next((match["source"] for match in matches if match["source"]), encounter["source"])
+            if not has_canonical_source:
+                encounter["source"] = next((match["source"] for match in matches if match["source"]), encounter["source"])
 
     postgame = []
     for row in workbook["Postgame Checklist"].iter_rows(min_row=2, values_only=True):
@@ -362,10 +370,24 @@ def main():
             seen_corrections.add(key)
             unique_corrections.append(correction)
     unknown_time_records = [{"location": location["name"], "pokemonId": encounter["pokemonId"]} for location in location_map.values() for encounter in location["encounters"] if "unknown" in encounter["times"]]
-    data = {"pokemon": pokemon, "locations": sorted(location_map.values(), key=lambda item: (item["category"], item["name"])), "acquisitions": acquisitions, "postgame": postgame, "tms": tms, "quality": {"corrections": unique_corrections, "unknownTimeRecords": unknown_time_records}}
+    data = {
+        "pokemon": pokemon,
+        "locations": sorted(location_map.values(), key=lambda item: (item["category"], item["name"])),
+        "acquisitions": acquisitions,
+        "postgame": postgame,
+        "tms": tms,
+        "quality": {
+            "corrections": unique_corrections,
+            "unknownTimeRecords": unknown_time_records,
+            "canonicalEncounterSource": "https://pokemondb.net/brilliant-diamond-shining-pearl",
+            "canonicalEncounterSourcePolicy": "Generation 8 location tables are reconciled for wild encounters; workbook-only special encounters are preserved for manual review.",
+            "canonicalAdditions": canonical_additions,
+        },
+    }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text("// Generated by scripts/import_workbook.py\nexport const gameData = " + json.dumps(data, ensure_ascii=False, indent=2) + " as const;\n", encoding="utf-8")
     print(f"Generated {OUTPUT} with {len(pokemon)} Pokémon, {len(location_map)} locations, {len(acquisitions)} acquisitions, {len(postgame)} postgame items and {len(tms)} TMs")
+    print(f"Reconciled {len(canonical_additions)} missing location records from Pokémon Database")
 
 
 if __name__ == "__main__":

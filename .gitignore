@@ -5,3 +5,6 @@ dist/
 vite.config.js
 vite.config.d.ts
 __pycache__/
+artifacts/qa/*
+!artifacts/qa/.gitkeep
+test-results/

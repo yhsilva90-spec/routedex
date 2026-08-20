@@ -375,6 +375,10 @@ h1 { color:#192e43; font-family:'Bricolage Grotesque',sans-serif; text-shadow:2p
 @media (max-width:900px) { .main-content { border-top:0; }.sidebar { box-shadow:none; }.location-watermark { font-size:58px; } }
 @media (max-width:600px) { .location-watermark { right:38px; font-size:49px; }.summary-pill, .toolbar, .location-card, .dex-card, .task-row, .tm-row, .league-card { box-shadow:2px 2px 0 var(--paper-shadow); } }
 
+/* Responsive QA guard: grid children must be allowed to shrink below their content width. */
+.workspace, .sidebar, .main-content { min-width: 0; }
+@media (max-width:900px) { .sidebar { width: 100%; min-width: 0; } }
+
 /* Type atlas: stronger semantic separation without sacrificing compact cards. */
 .type-chip {
   color: #1d2a35;

@@ -6,26 +6,34 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "test": "vitest run",
+    "test": "vitest run --exclude=tests/e2e/**",
     "test:watch": "vitest",
     "agent": "node scripts/routedex-agent.mjs",
     "agent:dev": "node scripts/routedex-agent.mjs dev",
     "agent:check": "node scripts/routedex-agent.mjs check",
     "agent:audit": "node scripts/routedex-agent.mjs audit",
-    "agent:prepare-update": "node scripts/routedex-agent.mjs prepare-update"
+    "agent:prepare-update": "node scripts/routedex-agent.mjs prepare-update",
+    "agent:qa:data": "node --experimental-strip-types scripts/qa-data.mjs",
+    "agent:qa:source": "node --experimental-strip-types scripts/qa-source.mjs",
+    "agent:reconcile:source": "node --experimental-strip-types scripts/reconcile-source-versions.mjs",
+    "agent:qa:interaction": "playwright test tests/e2e/interaction.spec.ts tests/e2e/progress-flows.spec.ts tests/e2e/smoke.spec.ts",
+    "agent:qa:visual": "node scripts/qa-visual.mjs",
+    "agent:qa": "node scripts/routedex-agent.mjs qa",
+    "agent:qa:fix": "node scripts/routedex-agent.mjs qa-fix"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
-    "vite": "latest",
-    "typescript": "latest",
+    "lucide-react": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "lucide-react": "latest"
+    "typescript": "latest",
+    "vite": "latest"
   },
   "devDependencies": {
-    "vitest": "latest",
-    "jsdom": "latest",
+    "@playwright/test": "1.62.1",
     "@types/react": "latest",
-    "@types/react-dom": "latest"
+    "@types/react-dom": "latest",
+    "jsdom": "latest",
+    "vitest": "latest"
   }
 }
