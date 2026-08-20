@@ -90,12 +90,19 @@ export function parsePokemonDatabaseHtml(html: string): SourceEncounterRecord[] 
     const heading = stripTags(tableMatch[1]);
     const methodInfo = getMethodAndHeadingTime(heading);
     if (!methodInfo) continue;
+    let currentMethodInfo = methodInfo;
     for (const rowMatch of tableMatch[2].matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)) {
       const row = rowMatch[1];
+      const statusHeading = row.match(/<th[^>]*class="[^"]*cell-loc-status[^"]*"[^>]*>([\s\S]*?)<\/th>/i);
+      if (statusHeading) {
+        const nextMethodInfo = getMethodAndHeadingTime(stripTags(statusHeading[1]));
+        if (nextMethodInfo) currentMethodInfo = nextMethodInfo;
+        continue;
+      }
       const pokemonId = parsePokemonId(row);
       const versions = parseVersions(row);
       if (!pokemonId || !versions.length) continue;
-      records.push({ pokemonId, method: methodInfo.method, versions, times: parseTimes(row, methodInfo.time) });
+      records.push({ pokemonId, method: currentMethodInfo.method, versions, times: parseTimes(row, currentMethodInfo.time) });
     }
   }
   return records;

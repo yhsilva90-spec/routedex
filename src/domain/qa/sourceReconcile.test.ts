@@ -66,7 +66,7 @@ describe('source reconciliation', () => {
       id: 'route-209-209',
       pokemonId: 209,
       locationId: 'route-209',
-      method: 'Swarm · Walking',
+      method: 'Swarm',
       condition: 'Pós-jogo',
       times: ['unknown'],
       versions: ['BD', 'SP'],
@@ -84,5 +84,69 @@ describe('source reconciliation', () => {
 
     expect(result.changed).toBe(false);
     expect(result.encounter).toEqual(encounter);
+  });
+
+  it('removes an external Walking duplicate when the same encounter is a Swarm', () => {
+    const encounter: Encounter = {
+      id: 'route-209-209',
+      pokemonId: 209,
+      locationId: 'route-209',
+      method: 'Swarm · Walking',
+      condition: 'Pós-jogo',
+      times: ['unknown', 'morning', 'day', 'night'],
+      versions: ['BD', 'SP'],
+      details: [
+        {
+          method: 'Swarm',
+          times: ['unknown'],
+          versions: ['BD', 'SP'],
+          condition: 'Pós-jogo',
+          source: 'Cópia de BDSP Pokedex Worklist Sharable.xlsx',
+        },
+        {
+          method: 'Walking',
+          times: ['morning', 'day', 'night'],
+          versions: ['BD', 'SP'],
+          chance: '40%',
+          source: 'https://pokemondb.net/location/sinnoh-route-209',
+        },
+      ],
+      source: 'https://pokemondb.net/location/sinnoh-route-209',
+    };
+
+    const result = reconcileEncounterWithSource(encounter, [
+      { pokemonId: 209, method: 'Swarm', versions: ['BD', 'SP'], times: ['morning', 'day', 'night'] },
+    ]);
+
+    expect(result.encounter.details?.map((detail) => detail.method)).toEqual(['Swarm']);
+    expect(result.removedDetails).toBe(1);
+    expect(result.changed).toBe(true);
+  });
+
+  it('converts a local Walking record to Swarm when the source only lists Swarm', () => {
+    const encounter: Encounter = {
+      id: 'lake-acuity-238',
+      pokemonId: 238,
+      locationId: 'lake-acuity',
+      method: 'Walking',
+      times: ['morning', 'day', 'night'],
+      versions: ['BD', 'SP'],
+      details: [{
+        method: 'Walking',
+        times: ['morning', 'day', 'night'],
+        versions: ['BD', 'SP'],
+        chance: '40%',
+        source: 'https://pokemondb.net/location/sinnoh-lake-acuity',
+      }],
+      source: 'https://pokemondb.net/location/sinnoh-lake-acuity',
+    };
+
+    const result = reconcileEncounterWithSource(encounter, [
+      { pokemonId: 238, method: 'Swarm', versions: ['BD', 'SP'], times: ['morning', 'day', 'night'] },
+    ]);
+
+    expect(result.encounter.method).toBe('Swarm');
+    expect(result.encounter.details?.[0].method).toBe('Swarm');
+    expect(result.changed).toBe(true);
   });
 });

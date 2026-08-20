@@ -19,11 +19,28 @@ const route209Html = `
     </tr>
   </table>`;
 
+const inlineSwarmHtml = `
+  <h3>Walking</h3>
+  <table>
+    <tr><th colspan="7" class="cell-loc-status">Swarm</th></tr>
+    <tr>
+      <td class="cell-fixed cell-name"><a class="ent-name" title="View Pokedex for #0209 Snubbull">Snubbull</a></td>
+      <td class="cell-loc-game cell-loc-game-BD8">BD</td><td class="cell-loc-game cell-loc-game-SP8">SP</td>
+      <td class="cell-fixed"><img alt="Morning"><img alt="Day"><img alt="Night"></td>
+    </tr>
+  </table>`;
+
 describe('source encounter comparison', () => {
   it('parses version-specific rows and encounter times', () => {
     expect(parsePokemonDatabaseHtml(route209Html)).toEqual([
       { pokemonId: 439, method: 'Walking', versions: ['BD'], times: ['morning'] },
       { pokemonId: 439, method: 'Walking', versions: ['BD'], times: ['day'] },
+    ]);
+  });
+
+  it('uses an inline location-status row to classify Swarm separately from Walking', () => {
+    expect(parsePokemonDatabaseHtml(inlineSwarmHtml)).toEqual([
+      { pokemonId: 209, method: 'Swarm', versions: ['BD', 'SP'], times: ['morning', 'day', 'night'] },
     ]);
   });
 

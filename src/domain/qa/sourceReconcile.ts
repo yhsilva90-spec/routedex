@@ -31,7 +31,19 @@ function reconcileDetail(
   if (!detailSource || !EXTERNAL_SOURCE.test(detailSource)) return [detail];
 
   const matches = source.filter((record) => record.pokemonId === encounter.pokemonId && sameMethod(detail.method, record.method));
-  if (!matches.length) return [detail];
+  const hasSwarmDetail = encounter.details?.some((candidate) => candidate.method === 'Swarm') ?? false;
+  const swarmMatches = source.filter((record) => record.pokemonId === encounter.pokemonId && record.method === 'Swarm');
+  if (detail.method === 'Walking' && !matches.length && swarmMatches.length) {
+    if (hasSwarmDetail) return [];
+    return reconcileDetail(encounter, {
+      ...detail,
+      method: 'Swarm',
+      condition: detail.condition ?? encounter.condition ?? 'Pós-jogo',
+    }, source);
+  }
+  if (!matches.length) {
+    return [detail];
+  }
 
   const localVersions = detail.versions.length ? detail.versions : encounter.versions;
   const times: EncounterTime[] = detail.times.length ? detail.times : ['unknown'];
@@ -74,7 +86,11 @@ export function reconcileEncounterWithSource(
   const details = originalDetails.flatMap((detail) => reconcileDetail(encounter, detail, source));
   const versions = unique(details.flatMap((detail) => detail.versions));
   const times = unique(details.flatMap((detail) => detail.times));
-  const reconciled: Encounter = { ...encounter, details, versions, times };
+  const methods = unique(details.map((detail) => detail.method));
+  const detailsChanged = JSON.stringify(details) !== JSON.stringify(originalDetails);
+  const staleSwarmMethod = methods.includes('Swarm') && !methods.includes('Walking') && encounter.method?.includes('Walking');
+  const method = (detailsChanged || staleSwarmMethod) && methods.length ? methods.join(' · ') : encounter.method;
+  const reconciled: Encounter = { ...encounter, method, details, versions, times };
   const changed = JSON.stringify(reconciled) !== JSON.stringify(encounter);
   return { encounter: reconciled, changed, removedDetails: originalDetails.length - details.length };
 }

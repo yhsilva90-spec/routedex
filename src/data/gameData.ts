@@ -4953,13 +4953,10 @@ export const gameData = {
           "id": "eterna-forest-287",
           "pokemonId": 287,
           "locationId": "eterna-forest",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -4977,23 +4974,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "10",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-eterna-forest"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-eterna-forest"
@@ -5287,13 +5267,10 @@ export const gameData = {
           "id": "fuego-ironworks-81",
           "pokemonId": 81,
           "locationId": "fuego-ironworks",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -5311,23 +5288,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "28-29",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-fuego-ironworks"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-fuego-ironworks"
@@ -6963,7 +6923,7 @@ export const gameData = {
           "id": "lake-acuity-238",
           "pokemonId": 238,
           "locationId": "lake-acuity",
-          "method": "Walking",
+          "method": "Swarm",
           "condition": null,
           "times": [
             "morning",
@@ -6976,7 +6936,7 @@ export const gameData = {
           ],
           "details": [
             {
-              "method": "Walking",
+              "method": "Swarm",
               "times": [
                 "morning",
                 "day",
@@ -6989,7 +6949,7 @@ export const gameData = {
               "chance": "40%",
               "rarity": "40%",
               "levels": "35",
-              "condition": null,
+              "condition": "Pós-jogo",
               "source": "https://pokemondb.net/location/sinnoh-lake-acuity"
             }
           ],
@@ -7381,13 +7341,10 @@ export const gameData = {
           "id": "lake-valor-108",
           "pokemonId": 108,
           "locationId": "lake-valor",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -7405,23 +7362,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "34-36",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-lake-valor"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-lake-valor"
@@ -8014,13 +7954,10 @@ export const gameData = {
           "id": "lake-verity-283",
           "pokemonId": 283,
           "locationId": "lake-verity",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -8038,23 +7975,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "2",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-lake-verity"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-lake-verity"
@@ -15823,13 +15743,10 @@ export const gameData = {
           "id": "valley-windworks-309",
           "pokemonId": 309,
           "locationId": "valley-windworks",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -15847,23 +15764,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "7",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-valley-windworks"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-valley-windworks"
@@ -17745,13 +17645,10 @@ export const gameData = {
           "id": "route-201-84",
           "pokemonId": 84,
           "locationId": "route-201",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -17769,23 +17666,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "2",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-201"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-201"
@@ -17937,13 +17817,10 @@ export const gameData = {
           "id": "route-202-263",
           "pokemonId": 263,
           "locationId": "route-202",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -17961,23 +17838,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "3",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-202"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-202"
@@ -18317,13 +18177,10 @@ export const gameData = {
           "id": "route-203-104",
           "pokemonId": 104,
           "locationId": "route-203",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -18341,23 +18198,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "4",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-203"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-203"
@@ -20565,13 +20405,10 @@ export const gameData = {
           "id": "route-206-299",
           "pokemonId": 299,
           "locationId": "route-206",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -20589,23 +20426,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "14",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-206"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-206"
@@ -20941,13 +20761,10 @@ export const gameData = {
           "id": "route-207-231",
           "pokemonId": 231,
           "locationId": "route-207",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -20965,23 +20782,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "5",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-207"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-207"
@@ -21270,13 +21070,10 @@ export const gameData = {
           "id": "route-208-206",
           "pokemonId": 206,
           "locationId": "route-208",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -21294,23 +21091,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "16",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-208"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-208"
@@ -21942,13 +21722,10 @@ export const gameData = {
           "id": "route-209-209",
           "pokemonId": 209,
           "locationId": "route-209",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -21966,23 +21743,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "16",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-209"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-209"
@@ -25036,13 +24796,10 @@ export const gameData = {
           "id": "route-213-359",
           "pokemonId": 359,
           "locationId": "route-213",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -25060,23 +24817,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "20",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-213"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-213"
@@ -25750,13 +25490,10 @@ export const gameData = {
           "id": "route-214-325",
           "pokemonId": 325,
           "locationId": "route-214",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -25774,23 +25511,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "22-23",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-214"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-214"
@@ -26151,13 +25871,10 @@ export const gameData = {
           "id": "route-215-96",
           "pokemonId": 96,
           "locationId": "route-215",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -26175,23 +25892,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "20-21",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-215"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-215"
@@ -26561,13 +26261,10 @@ export const gameData = {
           "id": "route-216-225",
           "pokemonId": 225,
           "locationId": "route-216",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -26585,23 +26282,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "32",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-216"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-216"
@@ -26857,7 +26537,7 @@ export const gameData = {
           "id": "route-217-220",
           "pokemonId": 220,
           "locationId": "route-217",
-          "method": "Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
             "morning",
@@ -26870,7 +26550,7 @@ export const gameData = {
           ],
           "details": [
             {
-              "method": "Walking",
+              "method": "Swarm",
               "times": [
                 "morning",
                 "day",
@@ -26883,7 +26563,7 @@ export const gameData = {
               "chance": "40%",
               "rarity": "40%",
               "levels": "34",
-              "condition": null,
+              "condition": "Pós-jogo",
               "source": "https://pokemondb.net/location/sinnoh-route-217"
             }
           ],
@@ -27146,13 +26826,10 @@ export const gameData = {
           "id": "route-218-100",
           "pokemonId": 100,
           "locationId": "route-218",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -27170,23 +26847,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "28",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-218"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-218"
@@ -28574,7 +28234,7 @@ export const gameData = {
           "id": "route-221-83",
           "pokemonId": 83,
           "locationId": "route-221",
-          "method": "Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
             "morning",
@@ -28587,7 +28247,7 @@ export const gameData = {
           ],
           "details": [
             {
-              "method": "Walking",
+              "method": "Swarm",
               "times": [
                 "morning",
                 "day",
@@ -28600,7 +28260,7 @@ export const gameData = {
               "chance": "40%",
               "rarity": "40%",
               "levels": "28",
-              "condition": null,
+              "condition": "Pós-jogo",
               "source": "https://pokemondb.net/location/sinnoh-route-221"
             }
           ],
@@ -29433,13 +29093,10 @@ export const gameData = {
           "id": "route-222-300",
           "pokemonId": 300,
           "locationId": "route-222",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -29457,23 +29114,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "40",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-222"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-222"
@@ -30339,7 +29979,7 @@ export const gameData = {
           "id": "route-224-177",
           "pokemonId": 177,
           "locationId": "route-224",
-          "method": "Walking",
+          "method": "Swarm",
           "condition": null,
           "times": [
             "morning",
@@ -30352,7 +29992,7 @@ export const gameData = {
           ],
           "details": [
             {
-              "method": "Walking",
+              "method": "Swarm",
               "times": [
                 "morning",
                 "day",
@@ -30365,7 +30005,7 @@ export const gameData = {
               "chance": "40%",
               "rarity": "40%",
               "levels": "53",
-              "condition": null,
+              "condition": "Pós-jogo",
               "source": "https://pokemondb.net/location/sinnoh-route-224"
             }
           ],
@@ -31349,13 +30989,10 @@ export const gameData = {
           "id": "route-225-296",
           "pokemonId": 296,
           "locationId": "route-225",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -31373,23 +31010,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "50-51",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-225"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-225"
@@ -31983,13 +31603,10 @@ export const gameData = {
           "id": "route-226-98",
           "pokemonId": 98,
           "locationId": "route-226",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -32007,23 +31624,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "52",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-226"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-226"
@@ -32900,13 +32500,10 @@ export const gameData = {
           "id": "route-227-327",
           "pokemonId": 327,
           "locationId": "route-227",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -32924,23 +32521,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "55",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-227"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-227"
@@ -33501,13 +33081,10 @@ export const gameData = {
           "id": "route-228-374",
           "pokemonId": 374,
           "locationId": "route-228",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": null,
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -33525,23 +33102,6 @@ export const gameData = {
               ],
               "condition": null,
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "53",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-228"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-228"
@@ -33768,13 +33328,10 @@ export const gameData = {
           "id": "route-229-16",
           "pokemonId": 16,
           "locationId": "route-229",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -33792,23 +33349,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "51",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-229"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-229"
@@ -34783,13 +34323,10 @@ export const gameData = {
           "id": "route-230-222",
           "pokemonId": 222,
           "locationId": "route-230",
-          "method": "Swarm · Walking",
+          "method": "Swarm",
           "condition": "Pós-jogo",
           "times": [
-            "unknown",
-            "morning",
-            "day",
-            "night"
+            "unknown"
           ],
           "versions": [
             "BD",
@@ -34807,23 +34344,6 @@ export const gameData = {
               ],
               "condition": "Pós-jogo",
               "source": "Cópia de BDSP Pokedex Worklist Sharable.xlsx"
-            },
-            {
-              "method": "Walking",
-              "times": [
-                "morning",
-                "day",
-                "night"
-              ],
-              "versions": [
-                "BD",
-                "SP"
-              ],
-              "chance": "40%",
-              "rarity": "40%",
-              "levels": "50",
-              "condition": null,
-              "source": "https://pokemondb.net/location/sinnoh-route-230"
             }
           ],
           "source": "https://pokemondb.net/location/sinnoh-route-230"
