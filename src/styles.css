@@ -379,6 +379,12 @@ h1 { color:#192e43; font-family:'Bricolage Grotesque',sans-serif; text-shadow:2p
 .workspace, .sidebar, .main-content { min-width: 0; }
 @media (max-width:900px) { .sidebar { width: 100%; min-width: 0; } }
 
+/* The app is a full-width field guide. Keep the workspace flush with the viewport. */
+.workspace { width: 100%; max-width: none; }
+
+/* The sidebar uses its navigation state for emphasis; no decorative rail cuts through it. */
+.sidebar::after { display: none !important; content: none !important; }
+
 /* Type atlas: stronger semantic separation without sacrificing compact cards. */
 .type-chip {
   color: #1d2a35;
@@ -413,6 +419,10 @@ h1 { color:#192e43; font-family:'Bricolage Grotesque',sans-serif; text-shadow:2p
 .league-badge img,
 .badge-slot.earned .badge-slot-art img,
 .league-card.done .league-badge img { filter: none !important; }
+
+.encounter-row > img,
+.dex-card > img,
+.league-portrait img { opacity: 1 !important; mix-blend-mode: normal; }
 
 /* Keep atlas category marks expressive but subordinate to the location name. */
 .location-watermark {
