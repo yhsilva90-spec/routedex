@@ -47,3 +47,23 @@ test('captures responsive visual checkpoints and layout health metrics', async (
 
   writeFileSync(resolve('artifacts/qa/visual-report.json'), `${JSON.stringify({ generatedAt: new Date().toISOString(), viewports: reports }, null, 2)}\n`, 'utf8');
 });
+
+test('uses a valid direct asset for every gym and Elite Four portrait', async ({ page, request }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Ginásios', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Ginásios e Elite Four' })).toBeVisible();
+  const portraits = await page.locator('.league-portrait img').evaluateAll((images) => images.map((image) => ({
+    alt: image.getAttribute('alt'),
+    source: image.getAttribute('src') ?? '',
+  })));
+
+  expect(portraits).toHaveLength(12);
+  expect(portraits.every((portrait) => portrait.source.includes('/media/upload/'))).toBe(true);
+
+  for (const portrait of portraits) {
+    const response = await request.get(portrait.source);
+    expect(response.ok(), `${portrait.alt} asset is unavailable`).toBe(true);
+    expect(response.headers()['content-type']).toContain('image/');
+  }
+});

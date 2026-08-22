@@ -1,7 +1,24 @@
 import type { LeagueMember } from '../domain/types';
 
 const archiveFile = (filename: string) => `https://archives.bulbagarden.net/wiki/Special:FilePath/${encodeURIComponent(filename.replace(/ /g, '_'))}`;
-const leaderImage = (name: string) => archiveFile(`VS${name} BDSP.png`);
+// Resolved through Bulbagarden's MediaWiki imageinfo endpoint on 2026-08-21.
+// The direct media URLs avoid the redirect response returned by Special:FilePath
+// when these portraits are embedded as cross-origin <img> elements.
+const leaderMediaPaths: Record<string, string> = {
+  Roark: '8/84/VSRoark_BDSP.png',
+  Gardenia: 'd/d9/VSGardenia_BDSP.png',
+  Maylene: '0/0a/VSMaylene_BDSP.png',
+  'Crasher Wake': 'd/d6/VSCrasher_Wake_BDSP.png',
+  Fantina: '1/16/VSFantina_BDSP.png',
+  Byron: '8/83/VSByron_BDSP.png',
+  Candice: 'd/d9/VSCandice_BDSP.png',
+  Volkner: '0/0c/VSVolkner_BDSP.png',
+  Aaron: '4/4d/VSAaron_BDSP.png',
+  Bertha: 'a/a2/VSBertha_BDSP.png',
+  Flint: '7/71/VSFlint_BDSP.png',
+  Lucian: 'b/b4/VSLucian_BDSP.png',
+};
+const leaderImage = (name: string) => `https://archives.bulbagarden.net/media/upload/${leaderMediaPaths[name]}`;
 const badgeImage = (name: string) => archiveFile(`Badge Case ${name} IV.png`);
 
 export const gymLeaders: LeagueMember[] = [
