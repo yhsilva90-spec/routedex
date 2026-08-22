@@ -424,6 +424,16 @@ h1 { color:#192e43; font-family:'Bricolage Grotesque',sans-serif; text-shadow:2p
 .dex-card > img,
 .league-portrait img { opacity: 1 !important; mix-blend-mode: normal; }
 
+/* Preserve more of the 80px game-sprite detail instead of shrinking it to 48px. */
+.location-card.expanded-panel .encounter-row > img,
+.encounter-row > img { width: 56px; height: 56px; flex: 0 0 56px; }
+.dex-card > img { width: 56px; height: 56px; flex: 0 0 56px; }
+
+/* Give ultra-wide screens a fourth route card without widening the field-guide cells indefinitely. */
+@media (min-width: 2200px) {
+  .location-row { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
 /* Keep atlas category marks expressive but subordinate to the location name. */
 .location-watermark {
   font-family: 'IBM Plex Sans', Arial, sans-serif;

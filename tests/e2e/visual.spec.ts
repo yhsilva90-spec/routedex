@@ -67,3 +67,22 @@ test('uses a valid direct asset for every gym and Elite Four portrait', async ({
     expect(response.headers()['content-type']).toContain('image/');
   }
 });
+
+test('uses four route columns on ultra-wide screens', async ({ page }) => {
+  await page.setViewportSize({ width: 2560, height: 1080 });
+  await page.goto('/');
+  const firstRouteRow = page.locator('.location-row').first();
+  await expect(firstRouteRow).toBeVisible();
+  expect(await firstRouteRow.locator(':scope > .location-card').count()).toBe(4);
+});
+
+test('keeps encounter sprites large enough to preserve pixel detail', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  const encounterSpriteSize = await page.locator('.encounter-row > img').first().evaluate((image) => image.getBoundingClientRect().width);
+  expect(encounterSpriteSize).toBeGreaterThanOrEqual(56);
+
+  await page.getByRole('button', { name: 'National Dex', exact: true }).click();
+  const dexSpriteSize = await page.locator('.dex-card > img').first().evaluate((image) => image.getBoundingClientRect().width);
+  expect(dexSpriteSize).toBeGreaterThanOrEqual(56);
+});

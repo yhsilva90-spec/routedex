@@ -6,7 +6,7 @@ import {
 import { acquisitions, eliteFour, gymLeaders, locations, pokemon, pokemonById, postgame, sinnohPokemon, spriteUrl, tms } from './data';
 import { createProgress, filterEncounters, getLocationProgress, parseProgress, serializeProgress, toggleCaptured, toggleChecklist, toggleLeagueChecklist } from './domain/progress';
 import { getEncounterChanceLabels, getEncounterLevelLabels, groupEncountersByMethod } from './domain/encounters';
-import { expandedRouteLayout, getBalancedRowSizes } from './domain/layout';
+import { expandedRouteLayout, getBalancedRowSizes, getLocationGridColumns } from './domain/layout';
 import { getDexToggleEncounter } from './domain/dex';
 import type { Encounter, EncounterTime, GameVersion, LeagueMember, Location, ProgressState } from './domain/types';
 import { getAcquisitionGroupLabel } from './domain/acquisitions';
@@ -138,6 +138,12 @@ function SummaryPill({ label, value }: { label: string; value: string }) { retur
 function LocationsView(props: { query: string; setQuery: (value: string) => void; version: VersionFilter; setVersion: (value: VersionFilter) => void; time: TimeFilter; setTime: (value: TimeFilter) => void; status: 'all' | 'open' | 'complete'; setStatus: (value: 'all' | 'open' | 'complete') => void; expanded: string | null; setExpanded: (value: string | null) => void; progress: ProgressState; toggleEncounter: (encounter: Encounter) => void }) {
   const { query, setQuery, version, setVersion, time, setTime, status, setStatus, expanded, setExpanded, progress, toggleEncounter } = props;
   const [closing, setClosing] = useState<string | null>(null);
+  const [locationColumns, setLocationColumns] = useState(() => getLocationGridColumns(window.innerWidth));
+  useEffect(() => {
+    const handleResize = () => setLocationColumns(getLocationGridColumns(window.innerWidth));
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const toggleLocation = (locationId: string) => {
     if (expanded === locationId) {
       setClosing(locationId);
@@ -161,7 +167,7 @@ function LocationsView(props: { query: string; setQuery: (value: string) => void
     {categories.map(({ key, label, icon: Icon }) => {
       const group = visibleLocations.filter((location) => location.category === key);
       if (!group.length) return null;
-      const rows = Array.from({ length: Math.ceil(group.length / 3) }, (_, index) => group.slice(index * 3, index * 3 + 3));
+      const rows = Array.from({ length: Math.ceil(group.length / locationColumns) }, (_, index) => group.slice(index * locationColumns, index * locationColumns + locationColumns));
       return <section className="location-section" key={key}><div className="section-heading"><div><Icon size={17} /><h2>{label}</h2></div><span>{group.length}</span></div><div className="location-grid">{rows.map((row, rowIndex) => { const expandedLocation = row.find((location) => location.id === expanded) ?? (closing ? row.find((location) => location.id === closing) : undefined); return <div className={`location-row-group ${expandedLocation ? 'has-expanded-panel' : ''}`} style={{ gap: `${expandedRouteLayout.panelGapPx}px` }} key={`${key}-${rowIndex}`}><div className={`location-row ${row.length === 1 ? 'single-location-row' : ''}`}>{row.map((location) => <LocationCard key={location.id} location={location} progress={progress} version={version} time={time} query={normalizedQuery} selected={expanded === location.id || closing === location.id} onToggleOpen={() => toggleLocation(location.id)} onToggle={toggleEncounter} />)}</div>{expandedLocation && <LocationCard key={`${expandedLocation.id}-expanded`} location={expandedLocation} progress={progress} version={version} time={time} query={normalizedQuery} selected expandedPanel closing={closing === expandedLocation.id} onToggleOpen={() => toggleLocation(expandedLocation.id)} onToggle={toggleEncounter} />}</div>; })}</div></section>;
     })}
   </>;

@@ -9,6 +9,10 @@ export const expandedRouteLayout = {
   encounterNameNoWrap: true,
 };
 
+export function getLocationGridColumns(viewportWidth: number): 3 | 4 {
+  return viewportWidth >= 2200 ? 4 : 3;
+}
+
 export function getBalancedRowSizes(count: number, columns = 3): number[] {
   if (count <= 0) return [];
   return Array.from({ length: Math.ceil(count / columns) }, (_, index) => Math.min(columns, count - index * columns));

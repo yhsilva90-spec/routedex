@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { expandedRouteLayout, getBalancedRowSizes } from './layout';
+import { expandedRouteLayout, getBalancedRowSizes, getLocationGridColumns } from './layout';
 
 describe('expanded route layout', () => {
   it('keeps the expanded panel separated and internally padded', () => {
@@ -24,5 +24,10 @@ describe('expanded route layout', () => {
     expect(getBalancedRowSizes(5)).toEqual([3, 2]);
     expect(getBalancedRowSizes(7)).toEqual([3, 3, 1]);
     expect(getBalancedRowSizes(8)).toEqual([3, 3, 2]);
+  });
+
+  it('uses four location columns only on ultra-wide viewports', () => {
+    expect(getLocationGridColumns(1920)).toBe(3);
+    expect(getLocationGridColumns(2560)).toBe(4);
   });
 });
