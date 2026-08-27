@@ -86,3 +86,48 @@ test('keeps encounter sprites large enough to preserve pixel detail', async ({ p
   const dexSpriteSize = await page.locator('.dex-card > img').first().evaluate((image) => image.getBoundingClientRect().width);
   expect(dexSpriteSize).toBeGreaterThanOrEqual(56);
 });
+
+test('uses a compact mobile navigation without horizontal overflow', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+
+  const collapsed = await page.evaluate(() => {
+    const nav = document.querySelector('.nav-list');
+    return {
+      viewportWidth: window.innerWidth,
+      documentWidth: document.documentElement.scrollWidth,
+      navDisplay: nav ? getComputedStyle(nav).display : '',
+      navOverflowX: nav ? getComputedStyle(nav).overflowX : '',
+    };
+  });
+
+  expect(collapsed.documentWidth).toBeLessThanOrEqual(collapsed.viewportWidth);
+  expect(collapsed.navDisplay).toBe('none');
+
+  await page.getByTestId('sidebar-toggle').click();
+  const expanded = await page.evaluate(() => {
+    const nav = document.querySelector('.nav-list');
+    return {
+      navDisplay: nav ? getComputedStyle(nav).display : '',
+      navOverflowX: nav ? getComputedStyle(nav).overflowX : '',
+    };
+  });
+
+  expect(expanded.navDisplay).toBe('grid');
+  expect(expanded.navOverflowX).not.toBe('auto');
+});
+
+test('gives mobile search and filters dedicated rows', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+
+  const layout = await page.evaluate(() => ({
+    toolbarDisplay: getComputedStyle(document.querySelector('.toolbar')!).display,
+    searchGridColumn: getComputedStyle(document.querySelector('.search-box')!).gridColumn,
+    filterGridColumns: [...document.querySelectorAll('.filter-select')].map((element) => getComputedStyle(element).gridColumn),
+  }));
+
+  expect(layout.toolbarDisplay).toBe('grid');
+  expect(layout.searchGridColumn).toBe('1 / -1');
+  expect(layout.filterGridColumns).toEqual(['auto', 'auto', '1 / -1']);
+});

@@ -434,6 +434,63 @@ h1 { color:#192e43; font-family:'Bricolage Grotesque',sans-serif; text-shadow:2p
   .location-row { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
+/* Mobile field guide: make navigation and filters vertical instead of relying on horizontal scrolling. */
+@media (max-width: 600px) {
+  html, body { overflow-x: hidden; }
+  .topbar { min-height: 62px; height: auto; padding: 9px 15px; }
+  .brand-lockup { min-width: 0; gap: 8px; }
+  .brand-mark { width: 35px; height: 35px; }
+  .brand-name { font-size: 15px; }
+  .brand-subtitle { font-size: 8px; }
+  .topbar-actions { gap: 5px; }
+  .ghost-button { min-width: 34px; min-height: 34px; }
+
+  .sidebar, .sidebar.collapsed { display: block; width: 100%; padding: 8px 15px; }
+  .sidebar-toggle, .sidebar.collapsed .sidebar-toggle { width: 100%; justify-content: space-between; padding: 10px 11px; }
+  .sidebar.collapsed .nav-list { display: none; }
+  .sidebar.expanded .nav-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; padding: 7px 0 2px; overflow: visible; }
+  .sidebar.expanded .nav-item { width: 100%; min-width: 0; padding: 9px 10px; }
+  .sidebar.expanded .nav-item > small { display: block; }
+
+  .main-content { padding: 22px 15px 54px; }
+  .page-intro { margin-bottom: 24px; }
+  .page-intro p { margin-top: 9px; }
+  .summary-pills { margin-top: 17px; gap: 6px; }
+  .summary-pill { padding: 9px 10px; }
+
+  .toolbar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 8px; margin-bottom: 13px; }
+  .toolbar-label { grid-column: 1 / -1; margin: 0; }
+  .search-box { grid-column: 1 / -1; min-width: 0; width: 100%; }
+  .filter-select { min-width: 0; }
+  .filter-select:last-child { grid-column: 1 / -1; }
+  .filter-select select { min-width: 0; width: 100%; overflow: hidden; text-overflow: ellipsis; }
+
+  .location-count { margin-bottom: 18px; }
+  .time-legend { flex-wrap: wrap; gap: 5px 10px; margin-bottom: 18px; }
+  .location-section { margin-bottom: 25px; }
+  .section-heading { margin-bottom: 8px; }
+  .location-grid { gap: 6px; }
+  .location-header { gap: 8px; padding: 11px 10px; }
+  .location-icon { flex: 0 0 30px; width: 30px; height: 30px; }
+  .location-title { min-width: 0; }
+  .location-title strong { max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .location-progress { width: 48px; flex: 0 0 48px; }
+  .location-open-label { font-size: 8px; }
+  .location-card.expanded-panel .encounter-list { padding-left: 8px; padding-right: 8px; }
+  .method-group { padding-left: 7px; padding-right: 7px; }
+  .encounter-row { gap: 7px; padding: 7px 1px; }
+  .encounter-row > img { width: 52px; height: 52px; flex-basis: 52px; }
+  .encounter-name { gap: 4px; }
+  .encounter-name strong { font-size: 11px; }
+  .encounter-meta { gap: 4px; }
+  .capture-check { flex-basis: 36px; }
+
+  .dex-card { gap: 8px; padding: 8px; }
+  .dex-card > img { width: 52px; height: 52px; flex-basis: 52px; }
+  .dex-name { gap: 4px; flex-wrap: wrap; white-space: normal; }
+  .dex-name strong { font-size: 12px; }
+}
+
 /* Keep atlas category marks expressive but subordinate to the location name. */
 .location-watermark {
   font-family: 'IBM Plex Sans', Arial, sans-serif;

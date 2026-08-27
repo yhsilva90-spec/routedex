@@ -9,7 +9,8 @@ export const expandedRouteLayout = {
   encounterNameNoWrap: true,
 };
 
-export function getLocationGridColumns(viewportWidth: number): 3 | 4 {
+export function getLocationGridColumns(viewportWidth: number): 1 | 3 | 4 {
+  if (viewportWidth <= 900) return 1;
   return viewportWidth >= 2200 ? 4 : 3;
 }
 

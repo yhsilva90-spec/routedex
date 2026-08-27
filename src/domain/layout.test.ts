@@ -27,6 +27,7 @@ describe('expanded route layout', () => {
   });
 
   it('uses four location columns only on ultra-wide viewports', () => {
+    expect(getLocationGridColumns(600)).toBe(1);
     expect(getLocationGridColumns(1920)).toBe(3);
     expect(getLocationGridColumns(2560)).toBe(4);
   });

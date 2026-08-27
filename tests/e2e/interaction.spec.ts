@@ -39,3 +39,18 @@ test('navigates through the main progress areas and toggles the collapsible side
   await page.getByRole('button', { name: 'Localizações' }).click();
   await expect(page.getByRole('heading', { name: 'Localizações' })).toBeVisible();
 });
+
+test('keeps a saved capture after reopening the app on mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  const captureRow = page.getByRole('button', { name: /^Marcar .+ como capturado$/ }).first();
+  const name = await captureRow.getAttribute('aria-label');
+  const capturedName = name?.replace(/^Marcar /, 'Desmarcar ') ?? '';
+
+  await captureRow.click();
+  await page.reload();
+
+  await expect(page.getByRole('button', { name: capturedName, exact: true }).first()).toHaveAttribute('aria-pressed', 'true');
+  const stored = await page.evaluate(() => window.localStorage.getItem('routedex-progress-v2'));
+  expect(stored).toContain('"version": 1');
+});
