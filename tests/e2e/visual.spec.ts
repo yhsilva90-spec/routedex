@@ -131,3 +131,14 @@ test('gives mobile search and filters dedicated rows', async ({ page }) => {
   expect(layout.searchGridColumn).toBe('1 / -1');
   expect(layout.filterGridColumns).toEqual(['auto', 'auto', '1 / -1']);
 });
+
+test('stacks encounters one per line inside a mobile method group', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await page.getByRole('button', { name: /Route 209/ }).click();
+
+  const methodRow = page.locator('.encounter-packed-row.row-3').first();
+  await expect(methodRow).toBeVisible();
+  const positions = await methodRow.locator('.encounter-row').evaluateAll((rows) => rows.map((row) => Math.round(row.getBoundingClientRect().y)));
+  expect(new Set(positions).size).toBe(3);
+});

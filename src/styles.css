@@ -478,6 +478,7 @@ h1 { color:#192e43; font-family:'Bricolage Grotesque',sans-serif; text-shadow:2p
   .location-open-label { font-size: 8px; }
   .location-card.expanded-panel .encounter-list { padding-left: 8px; padding-right: 8px; }
   .method-group { padding-left: 7px; padding-right: 7px; }
+  .encounter-packed-row.row-2, .encounter-packed-row.row-3 { grid-template-columns: 1fr; }
   .encounter-row { gap: 7px; padding: 7px 1px; }
   .encounter-row > img { width: 52px; height: 52px; flex-basis: 52px; }
   .encounter-name { gap: 4px; }
