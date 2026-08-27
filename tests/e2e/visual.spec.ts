@@ -142,3 +142,13 @@ test('stacks encounters one per line inside a mobile method group', async ({ pag
   const positions = await methodRow.locator('.encounter-row').evaluateAll((rows) => rows.map((row) => Math.round(row.getBoundingClientRect().y)));
   expect(new Set(positions).size).toBe(3);
 });
+
+test('stacks two encounters one per line inside a mobile method group', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+
+  const methodRow = page.locator('.encounter-packed-row.row-2').first();
+  await expect(methodRow).toBeVisible();
+  const positions = await methodRow.locator('.encounter-row').evaluateAll((rows) => rows.map((row) => Math.round(row.getBoundingClientRect().y)));
+  expect(new Set(positions).size).toBe(2);
+});
