@@ -54,3 +54,35 @@ test('keeps a saved capture after reopening the app on mobile', async ({ page })
   const stored = await page.evaluate(() => window.localStorage.getItem('routedex-progress-v2'));
   expect(stored).toContain('"version": 1');
 });
+
+test('scrolls the opened location into view on mobile', async ({ page }) => {
+  await page.addInitScript(() => {
+    const windowWithCalls = window as Window & { __routeDexScrollCalls: unknown[] };
+    windowWithCalls.__routeDexScrollCalls = [];
+    Element.prototype.scrollIntoView = function (options) {
+      windowWithCalls.__routeDexScrollCalls.push({
+        testId: this.getAttribute('data-testid'),
+        options,
+      });
+    };
+  });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+
+  const locationHeader = page.locator('[data-testid^="location-header-"]').nth(2);
+  const locationTestId = await locationHeader.getAttribute('data-testid');
+  expect(locationTestId).toBeTruthy();
+  const locationId = locationTestId?.replace('location-header-', '') ?? '';
+
+  await locationHeader.click();
+  await expect(page.locator(`[data-testid="location-card-${locationId}-expanded"]`)).toBeVisible();
+
+  const scrollCall = await page.evaluate(() => {
+    const windowWithCalls = window as Window & { __routeDexScrollCalls: Array<{ testId: string | null; options: ScrollIntoViewOptions }> };
+    return windowWithCalls.__routeDexScrollCalls.at(-1);
+  });
+  expect(scrollCall).toEqual({
+    testId: `location-card-${locationId}-expanded`,
+    options: { behavior: 'smooth', block: 'start' },
+  });
+});

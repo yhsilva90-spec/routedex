@@ -144,6 +144,13 @@ function LocationsView(props: { query: string; setQuery: (value: string) => void
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+  useEffect(() => {
+    if (!expanded || window.innerWidth > 600) return;
+    const frame = window.requestAnimationFrame(() => {
+      document.querySelector<HTMLElement>(`[data-testid="location-card-${expanded}-expanded"]`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [expanded]);
   const toggleLocation = (locationId: string) => {
     if (expanded === locationId) {
       setClosing(locationId);
