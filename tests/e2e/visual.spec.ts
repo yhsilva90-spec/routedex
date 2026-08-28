@@ -173,3 +173,15 @@ test('gives a remainder encounter the full mobile row width', async ({ page }) =
   expect(metrics.display).toBe('grid');
   expect(metrics.childWidth).toBeGreaterThan(metrics.rowWidth * 0.9);
 });
+
+test('removes packed group dividers on mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await page.getByRole('button', { name: /Route 210/ }).click();
+
+  const packedRow = page.locator('.method-group-wide .encounter-packed-row').first();
+  await expect(packedRow).toBeVisible();
+  const borderStyle = await packedRow.evaluate((row) => getComputedStyle(row).borderBottomStyle);
+
+  expect(borderStyle).toBe('none');
+});

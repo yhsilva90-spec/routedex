@@ -480,6 +480,7 @@ h1 { color:#192e43; font-family:'Bricolage Grotesque',sans-serif; text-shadow:2p
   .method-group { padding-left: 7px; padding-right: 7px; }
   .method-group-grid .method-group-2 .encounter-packed-row.row-2,
   .method-group-grid .method-group-3 .encounter-packed-row.row-3 { grid-template-columns: 1fr; }
+  .encounter-packed-row { border-bottom: 0; }
   .encounter-row { gap: 7px; padding: 7px 1px; }
   .encounter-row > img { width: 52px; height: 52px; flex-basis: 52px; }
   .encounter-name { gap: 4px; }
