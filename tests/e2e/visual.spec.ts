@@ -152,3 +152,24 @@ test('stacks two encounters one per line inside a mobile method group', async ({
   const positions = await methodRow.locator('.encounter-row').evaluateAll((rows) => rows.map((row) => Math.round(row.getBoundingClientRect().y)));
   expect(new Set(positions).size).toBe(2);
 });
+
+test('gives a remainder encounter the full mobile row width', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await page.getByRole('button', { name: /Route 210/ }).click();
+
+  const remainderRow = page.locator('.method-group-wide .encounter-packed-row.row-1').first();
+  await expect(remainderRow).toBeVisible();
+  const metrics = await remainderRow.evaluate((row) => {
+    const child = row.querySelector<HTMLElement>('.encounter-row');
+    const rowWidth = row.getBoundingClientRect().width;
+    return {
+      display: getComputedStyle(row).display,
+      rowWidth,
+      childWidth: child?.getBoundingClientRect().width ?? 0,
+    };
+  });
+
+  expect(metrics.display).toBe('grid');
+  expect(metrics.childWidth).toBeGreaterThan(metrics.rowWidth * 0.9);
+});
